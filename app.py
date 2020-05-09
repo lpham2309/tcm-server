@@ -15,9 +15,9 @@ items = [
     }
 ]
 
-@app.route("/") 
-def home_view(): 
-        return "<h1>Welcome to Geeks for Geeks</h1> ${}".format(items)
+# @app.route("/") 
+# def home_view(): 
+#         return "<h1>Welcome to Geeks for Geeks</h1> ${}".format(items)
 
     # def post(self):
     #     connection = mysql.connector.connect(**config)
@@ -27,8 +27,10 @@ def home_view():
     #     cursor.close()
     #     connection.close()
 
-
-#api.add_resource(ItemList, '/')
+class ItemList(Resource):
+    def get(self):
+        return {"items": items}
+api.add_resource(ItemList, '/')
 
 if __name__ == '__main__':
     app.run()
