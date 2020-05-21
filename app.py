@@ -19,17 +19,15 @@ items = [
 # def home_view(): 
 #         return "<h1>Welcome to Geeks for Geeks</h1> ${}".format(items)
 
-    # def post(self):
-    #     connection = mysql.connector.connect(**config)
-    #     cursor = connection.cursor()
-    #     cursor.execute('SELECT * FROM items')
-    #     results = [{name: item} for (name, grade) in cursor]
-    #     cursor.close()
-    #     connection.close()
+
 
 class ItemList(Resource):
     def get(self):
         return {"items": items}
+
+    
+
+
 api.add_resource(ItemList, '/')
 
 if __name__ == '__main__':
