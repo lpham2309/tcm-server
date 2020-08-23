@@ -3,3 +3,4 @@ flask_restful
 gunicorn
 flask-mysql
 python-dotenv
+PyMySQL

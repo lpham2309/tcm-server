@@ -1,3 +1,5 @@
+USE tcm
+
 CREATE TABLE `Auth` (
   `auth_user_id` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
