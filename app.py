@@ -13,6 +13,10 @@ from .apis.answers.answers import *
 
 from . import *
 
+class TestEndpoint(Resource):
+    def get(self):
+        return 'Hello World'
+
 api.add_resource(UsersAction, '/api/v1/users')
 api.add_resource(SingleUserAction, '/api/v1/users/<user_id>')
 api.add_resource(DoctorAction, '/api/v1/doctor/<user_id>')
@@ -24,6 +28,7 @@ api.add_resource(Questions, '/api/v1/questions')
 api.add_resource(AnswersByPatients, '/api/v1/<patient_id>')
 api.add_resource(AnswersByAssistantDoctors, '/api/v1/<assistant_doctor_id>')
 api.add_resource(AnswersByDoctors, '/api/v1/<doctors_id>')
+api.add_resource(TestEndpoint, '/')
 
 
 if __name__ == '__main__':
