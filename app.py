@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 import os
 from flask import Flask, jsonify
-from flask_serialize import FlaskSerializeMixin
 from flask_mysqldb import MySQL
 from flask_restful import Resource, Api, reqparse
 from .settings import config
@@ -32,4 +31,4 @@ api.add_resource(TestEndpoint, '/')
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True)
+    app.run(host='0.0.0.0', debug=True)
