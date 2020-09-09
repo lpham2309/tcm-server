@@ -95,7 +95,7 @@ class DoctorAction(Resource):
     def get(self, user_id):
 
         cursor = db.connection.cursor()
-        query = "SELECT * FROM `tcm`.doctors WHERE user_id=%s;"
+        query = "SELECT * FROM `tcm`.doctors WHERE user_id=%s AND role_name='doctor';"
         cursor.execute(query, (str(user_id),))
 
         try:
@@ -110,7 +110,7 @@ class DoctorAction(Resource):
 class PatientAction(Resource):
     def get(self, user_id):
         cursor = db.connection.cursor()
-        query = "SELECT * FROM `tcm`.patients WHERE user_id=%s;"
+        query = "SELECT * FROM `tcm`.patients WHERE user_id=%s AND role_name='patient';"
         cursor.execute(query, (str(user_id),))
 
         try:
@@ -126,7 +126,7 @@ class PatientAction(Resource):
 class AssistantDoctorAction(Resource):
     def get(self, user_id):
         cursor = db.connection.cursor()
-        query = "SELECT * FROM `tcm`.assistant_doctors WHERE user_id=%s;"
+        query = "SELECT * FROM `tcm`.assistant_doctors WHERE user_id=%s AND role_name='assistant_doctor';"
         cursor.execute(query, (str(user_id),))
 
         try:
