@@ -21,12 +21,13 @@ def parse_update_user_information():
     
     parser = reqparse.RequestParser()
 
-    parser.add_argument('user_id', type=str, required=True)
     parser.add_argument('first_name', type=str)
     parser.add_argument('last_name', type=str)
     parser.add_argument('date_of_birth', type=str)
     parser.add_argument('address', type=str)
     parser.add_argument('phone_number', type=int)
+
+    return parser
 
 class UsersAction(Resource):
     
@@ -37,11 +38,7 @@ class UsersAction(Resource):
         cursor = db.connection.cursor()
         query = "INSERT INTO `tcm`.users(user_id, first_name, last_name, date_of_birth, address, phone_number, gender, role_name) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);"
         cursor.execute(query, (data['user_id'], data['first_name'], data['last_name'], data['date_of_birth'], data['address'], data['phone_number'], data['gender'], data['role_name'],))
-        # user = User(
-        #     data['user_id'], data['first_name'], data['last_name'], 
-        #     data['date_of_birth'], data['address'], data['phone_number'], 
-        #     data['gender'], data['role_name'])
-        # db.session.add(user)
+
         db.connection.commit()
 
         return {'message': 'User created!'}, 200
@@ -58,23 +55,6 @@ class UsersAction(Resource):
                 'error': 'No users found'
             }, 400
         return {'message': 'Successfully retrieve all users!'}, 200
-    
-    def put(self):
-        parse = parse_user_information()
-        data = parse.parse_update_user_information()
-
-        cursor = db.connection.cursor()
-        query = "UPDATE `tcm`.users SET \
-            first_name=%s last_name=%s date_of_birth=%s \
-            address=%s phone_number=%s WHERE user_id=%s"
-        cursor.execute(query, (
-            data['first_name'], data['last_name'], data['date_of_birth'],
-            data['address'], data['phone_number'], data['user_id'],))
-        
-        db.connection.commit()
-        return {
-            'message': 'Successfully updated current user!'
-        }
 
 class SingleUserAction(Resource):
     def get(self, user_id):
@@ -92,6 +72,23 @@ class SingleUserAction(Resource):
 
         # return {'message': 'Successfully get information of a user'}, 200
         return jsonify(result)
+    
+    def put(self, user_id):
+        parse = parse_update_user_information()
+        data = parse.parse_args()
+
+        cursor = db.connection.cursor()
+        query = "UPDATE `tcm`.users SET \
+            first_name=%s, last_name=%s, date_of_birth=%s, \
+            address=%s, phone_number=%s WHERE user_id=%s;"
+        cursor.execute(query, (
+            data['first_name'], data['last_name'], data['date_of_birth'],
+            data['address'], data['phone_number'], user_id,))
+        
+        db.connection.commit()
+        return {
+            'message': 'Successfully updated current user!'
+        }
 
 # Note: these classes below will need refactoring
 class DoctorAction(Resource):
