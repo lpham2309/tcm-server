@@ -1,0 +1,1 @@
+ALTER USER 'lpham'@'localhost' IDENTIFIED BY 'withci';
