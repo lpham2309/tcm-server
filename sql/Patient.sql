@@ -8,4 +8,4 @@ CREATE TABLE `Patient` (
   PRIMARY KEY (`patient_id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   UNIQUE KEY `patient_id_UNIQUE` (`patient_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+)
