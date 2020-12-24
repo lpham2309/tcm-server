@@ -37,3 +37,4 @@ share/python-wheels/
 MANIFEST
 #Node Stuff
 node_modules/
+*.pyc

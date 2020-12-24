@@ -60,13 +60,9 @@ class UsersAction(Resource):
         return {'message': 'User created!'}, 200
 
     def get(self):
-        # cursor = db.connection.cursor()
-        # query = "SELECT * FROM `tcm`.users;"
-        # cursor.execute(query)
-
         try:
             results = []
-            users = Users.query.limit(20).all()
+            users = Users.query.filter_by(is_active=1).limit(20).all()
 
             for user in users:
                 results.append(user.to_json2())
