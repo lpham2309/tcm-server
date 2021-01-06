@@ -1,7 +1,5 @@
 Flask
 flask_restful
 gunicorn
-flask-mysql
 python-dotenv
-PyMySQL
-flask_mysqldb
+flask_sqlalchemy

@@ -43,7 +43,8 @@ class PatientDiagnosis(Resource):
 
         try:
             # result = cursor.fetchone()
-            result = Diagnosis.query.get(patient_id)
+            result = Diagnosis.query.filter_by(
+                patient_id=int(patient_id)).first()
         except Exception:
             return {
                 'error': 'No diagnosis information found with current user'
@@ -61,7 +62,8 @@ class PatientDiagnosis(Resource):
         # cursor.execute(query, (data['doctor_id'], data['assistant_doctor_id'],
         #                        data['doctor_notes'], data['symptoms_id'], data['syndrome_id'], patient_id,))
 
-        diagnosis = Diagnosis.query.get(patient_id)
+        diagnosis = Diagnosis.query.filter_by(
+            patient_id=int(patient_id)).first()
         diagnosis.doctor_id = data['doctor_id']
         diagnosis.assistant_doctor_id = data['assistant_doctor_id']
         diagnosis.doctor_notes = data['doctor_notes']

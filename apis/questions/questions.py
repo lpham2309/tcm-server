@@ -36,3 +36,17 @@ class QuestionController(Resource):
         db.session.commit()
 
         return {'message': 'Question added!'}, 200
+
+    def get(self):
+        try:
+            results = []
+            questions = Questions.query.all()
+
+            for question in questions:
+                results.append(question.to_json2())
+            return results
+        except Exception:
+            return {
+                'error': 'No questions found'
+            }, 400
+        return {'message': 'Successfully retrieve all questions!'}, 200
