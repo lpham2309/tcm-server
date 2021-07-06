@@ -11,8 +11,9 @@ app.config['MYSQL_USER'] = config['db_user']
 app.config['MYSQL_PASSWORD'] = config['db_password']
 app.config['MYSQL_DB'] = config['db_name']
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://{}:{}@{}/{}'.format(config['db_user'], config['db_password'], config['db_host'], config['db_name'])
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://{}:{}@{}/{}'.format(
+    config['db_user'], config['db_password'], config['db_host'], config['db_name'])
 
-db = MySQL(app)
+db = SQLAlchemy(app)
 
 api = Api(app)

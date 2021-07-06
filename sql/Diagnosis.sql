@@ -8,4 +8,4 @@ CREATE TABLE `Diagnosis` (
   `symptoms_id` int NOT NULL,
   `syndrome_id` int NOT NULL,
   PRIMARY KEY (`diagnosis_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+)

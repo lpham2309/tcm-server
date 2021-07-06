@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from .. import *
+from tcm_project.models.answers import AnswerController
 
 
 def parse_symptom_answers():
@@ -19,10 +20,10 @@ class AnswersByPatients(Resource):
         parse = parse_symptom_answers()
         data = parse.parse_args()
 
-        cursor = db.connection.cursor()
-        query = "INSERT INTO `tcm`.Answers(question_id, user_id, symptom_id, is_symptom) VALUES (%s, %s, %s, %s);"
-        cursor.execute(query, (data['question_id'], data['user_id'],
-                               data['symptom_id'], data['is_symptom'], ))
+        # cursor = db.connection.cursor()
+        # query = "INSERT INTO `tcm`.Answers(question_id, user_id, symptom_id, is_symptom) VALUES (%s, %s, %s, %s);"
+        # cursor.execute(query, (data['question_id'], data['user_id'],
+        #                        data['symptom_id'], data['is_symptom'], ))
 
         db.connection.commit()
 
